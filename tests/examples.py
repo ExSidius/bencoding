@@ -6,7 +6,7 @@ class Example(NamedTuple):
 	decoded: Union[
 				str,
 				int,
-				List[str, int, List, Dict],
+				List[Union[str, int, List, Dict]],
 				Dict[str, Union[str, int, List, Dict]]
 			]
 

@@ -19,10 +19,10 @@ def test_encode_integer():
 
 
 def test_encode_list():
-	for example in INTEGER_EXAMPLES:
+	for example in LIST_EXAMPLES:
 		assert encode(example.decoded) == example.encoded
 
 
 def test_encode_dict():
-	for example in INTEGER_EXAMPLES:
+	for example in DICT_EXAMPLES:
 		assert encode(example.decoded) == example.encoded

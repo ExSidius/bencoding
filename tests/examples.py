@@ -33,6 +33,7 @@ LIST_EXAMPLES = [
 		([], b'le'),
 		(['spam', 'eggs'], b'l4:spam4:eggse'),
 		(['parrot sketch', 42], b'l13:parrot sketchi42ee'),
+		([[1, 2, 3], [4, 5, 6]], b'lli1ei2ei3eeli4ei5ei6eee'),
 	]
 ]
 
@@ -57,6 +58,11 @@ DICT_EXAMPLES = [
 		({
 			 'foo': 42,
 			 'bar': 'spam'
-		}, b'd3:bar4:spam3:fooi42ee')
+		}, b'd3:bar4:spam3:fooi42ee'),
+		({
+			'level1': {
+				'level2': 'banana',
+			}
+		}, b'd6:level1d6:level26:bananaee')
 	]
 ]

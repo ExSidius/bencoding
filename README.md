@@ -9,3 +9,11 @@ transmit strings, numbers, lists, and dictionaries. This is a library
 that makes doing that easy while affording you luxuries from Python3.7
 (such as typing).
 
+## Tests
+
+This library is exceedingly well tested - tests come straight from the [BitTorrent Specification]
+(https://wiki.theory.org/index
+.php/BitTorrentSpecification#Bencoding)
+ and also from other [Bencoding libraries](https://github.com/fuzeman/bencode
+ .py/blob/master/tests/bencode_tests.py).
+ 

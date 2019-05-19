@@ -9,3 +9,6 @@
 # Environment Stuff
 Pipfile
 Pipfile.lock
+
+# Builds
+Bencoding.egg-info

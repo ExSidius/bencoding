@@ -30,6 +30,7 @@ def _encode_dict(value: Dict[str, Union[str, int, List, Dict]]) -> str:
 
 
 def encode_dict(value: Dict[str, Union[str, int, List, Dict]]) -> bytes:
+	value = {k: value[k] for k in sorted(value)}
 	return _encode_dict(value).encode()
 
 

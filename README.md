@@ -9,6 +9,16 @@ transmit strings, numbers, lists, and dictionaries. This is a library
 that makes doing that easy while affording you luxuries from Python3.7
 (such as typing).
 
+## Installation
+
+The best way to install this package as of now is via GitHub.
+
+```bash
+git clone https://github.com/ExSidius/bencoding.git
+cd bencoding
+pip install -e .
+```
+
 ## Tests
 
 This library is exceedingly well tested - tests come straight from the [BitTorrent Specification]

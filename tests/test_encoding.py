@@ -10,3 +10,13 @@ def test_encode_string():
 def test_encode_integer():
 	for example in INTEGER_EXAMPLES:
 		assert encode_integer(example.decoded) == example.encoded
+
+
+# def test_encode_list():
+# 	for example in INTEGER_EXAMPLES:
+# 		assert encode_list(example.decoded) == example.encoded
+#
+# 		
+# def test_encode_dict():
+# 	for example in INTEGER_EXAMPLES:
+# 		assert encode_dict(example.decoded) == example.encoded

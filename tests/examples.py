@@ -1,6 +1,7 @@
 from typing import NamedTuple, Union, List, Dict
 import pickle
 
+
 class Example(NamedTuple):
 	encoded: bytes
 	decoded: Union[

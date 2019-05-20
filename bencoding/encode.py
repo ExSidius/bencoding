@@ -1,6 +1,13 @@
 from typing import Union, List, Dict
 
 
+def encode_bytes(value: bytes) -> bytes:
+	return f'{len(value)}'.encode() + b':' + value
+
+
+_encode_bytes = encode_bytes
+
+
 def _encode_string(value: str) -> str:
 	return f'{len(value)}:{value}'
 
@@ -34,7 +41,7 @@ def encode_dict(value: Dict[str, Union[str, int, List, Dict]]) -> bytes:
 	return _encode_dict(value).encode()
 
 
-def _encode(value: Union[str, int, List, Dict]) -> str:
+def _encode(value: Union[str, int, List, Dict]) -> Union[str, bytes]:
 	if isinstance(value, str):
 		return _encode_string(value)
 	elif isinstance(value, int):
@@ -43,6 +50,8 @@ def _encode(value: Union[str, int, List, Dict]) -> str:
 		return _encode_list(value)
 	elif isinstance(value, dict):
 		return _encode_dict(value)
+	elif isinstance(value, bytes):
+		return _encode_bytes(value)
 	else:
 		raise Exception(f'{type(value)} is an unsupported type.')
 
@@ -56,5 +65,7 @@ def encode(value: Union[str, int, List, Dict]) -> bytes:
 		return encode_list(value)
 	elif isinstance(value, dict):
 		return encode_dict(value)
+	elif isinstance(value, bytes):
+		return encode_bytes(value)
 	else:
 		raise Exception(f'{type(value)} is an unsupported type.')

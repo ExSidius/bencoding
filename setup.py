@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(
-    name='Bencoding',
+    name='bencoding',
     version='0.1',
     packages=[
         'bencoding',

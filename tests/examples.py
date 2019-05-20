@@ -1,5 +1,5 @@
 from typing import NamedTuple, Union, List, Dict
-
+import pickle
 
 class Example(NamedTuple):
 	encoded: bytes
@@ -65,6 +65,15 @@ DICT_EXAMPLES = [
 			}
 		}, b'd6:level1d6:level26:bananaee')
 	]
+]
+
+
+with open('tests/ubuntu-18.04.2-desktop-amd64.iso.torrent.pickle', 'rb') as file:
+	decoded = pickle.load(file)
+with open('tests/ubuntu-18.04.2-desktop-amd64.iso.torrent', 'rb') as file:
+	encoded = file.read()
+TORRENT_EXAMPLES = [
+	Example(decoded=decoded, encoded=encoded)
 ]
 
 EXAMPLES = STRING_EXAMPLES + INTEGER_EXAMPLES + LIST_EXAMPLES + DICT_EXAMPLES

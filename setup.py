@@ -1,10 +1,10 @@
 from distutils.core import setup
 
 setup(
-    name='bencoding.py',
+    name='bencoding',
     version='0.1',
     packages=[
-        'bencoding.py',
+        'bencoding',
     ],
     license='MIT',
     description='Encode and Decode files using BitTorrent protocol.',

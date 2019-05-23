@@ -6,6 +6,9 @@ matrix:
       sudo: true
 cache: pip
 install:
+  - pip install pytest pytest-cov coveralls
   - pip install -e .
 script:
-  - pytest
+  - pytest --cov=bencoding/
+after_success:
+  coveralls

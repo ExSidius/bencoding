@@ -21,7 +21,7 @@ def _encode_list(encoding: Deque, value: List):
 	encoding.append(b'e')
 
 
-def _encode_dict(encoding: Deque, value: Dict[str, Union[str, int, bytes, Dict, List]]):
+def _encode_dict(encoding: Deque, value: Dict[str, Union[str, int, bytes, List, Dict]]):
 	encoding.append(b'd')
 	for k in sorted(value):
 		_encode_str(encoding, k)
@@ -40,11 +40,11 @@ encode_function = {
 }
 
 
-def _encode(encoding: Deque, value: Union[str, int, List, Dict]):
+def _encode(encoding: Deque, value: Union[str, int, bytes, List, Dict]):
 	return encode_function[type(value)](encoding, value)
 
 
-def encode(value: Union[bytes, str, int, List, Dict]) -> bytes:
+def encode(value: Union[str, int, bytes, List, Dict]) -> bytes:
 	encoding = deque()
 	_encode(encoding, value)
 	return b''.join(encoding)

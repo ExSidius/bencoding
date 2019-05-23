@@ -1,12 +1,7 @@
-import time
-from statistics import mean, stdev
-
 from bencoding import encode, decode
 from examples import (
 	Example,
 	EXAMPLES,
-	encoded,
-	decoded,
 )
 
 

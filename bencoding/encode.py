@@ -1,38 +1,50 @@
-from typing import Union, List, Dict
+from typing import Union, List, Dict, Deque
+from collections import deque, OrderedDict
 
 
-def encode_bytes(value: bytes) -> bytes:
-	return b'%d:%b' % (len(value), value)
+def _encode_bytes(encoding: Deque, value: bytes):
+	encoding.extend((str(len(value)).encode(), b':', value))
 
 
-def encode_string(value: str) -> bytes:
-	return f'{len(value)}:{value}'.encode()
+def _encode_str(encoding: Deque, value: str):
+	encoding.extend((str(len(value)).encode(), b':', value.encode()))
 
 
-def encode_integer(value: int) -> bytes:
-	return b'i%de' % value
+def _encode_int(encoding: Deque, value: int):
+	encoding.extend((b'i', str(value).encode(), b'e'))
 
 
-def encode_list(value: List[Union[str, int, List, Dict]]) -> bytes:
-	return b'l%be' % b''.join(encode(v) for v in value)
+def _encode_list(encoding: Deque, value: List):
+	encoding.append(b'l')
+	for item in value:
+		_encode(encoding, item)
+	encoding.append(b'e')
 
 
-def encode_dict(value: Dict[str, Union[str, int, List, Dict]]) -> bytes:
-	value = {k:value[k] for k in sorted(value)}
-	return b'd%be' % b''.join(b'%b%b' % (encode_string(k), encode(v))
-	                          for k, v in value.items())
+def _encode_dict(encoding: Deque, value: Dict[str, Union[str, int, bytes, Dict, List]]):
+	encoding.append(b'd')
+	for k in sorted(value):
+		_encode_str(encoding, k)
+		_encode(encoding, value[k])
+	encoding.append(b'e')
 
 
-def encode(value: Union[str, int, List, Dict]) -> bytes:
-	if isinstance(value, str):
-		return encode_string(value)
-	elif isinstance(value, int):
-		return encode_integer(value)
-	elif isinstance(value, list):
-		return encode_list(value)
-	elif isinstance(value, dict):
-		return encode_dict(value)
-	elif isinstance(value, bytes):
-		return encode_bytes(value)
-	else:
-		raise Exception(f'{type(value)} is an unsupported type.')
+encode_function = {
+	int: _encode_int,
+	bytes: _encode_bytes,
+	str: _encode_str,
+	list: _encode_list,
+	tuple: _encode_list,
+	dict: _encode_dict,
+	OrderedDict: _encode_dict,
+}
+
+
+def _encode(encoding: Deque, value: Union[str, int, List, Dict]):
+	return encode_function[type(value)](encoding, value)
+
+
+def encode(value: Union[bytes, str, int, List, Dict]) -> bytes:
+	encoding = deque()
+	_encode(encoding, value)
+	return b''.join(encoding)

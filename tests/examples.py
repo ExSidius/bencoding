@@ -1,14 +1,17 @@
 from typing import NamedTuple, Union, List, Dict
 import pickle
 
+supported_types = Union[str, bytes, int, List, Dict]
+
 
 class Example(NamedTuple):
 	encoded: bytes
 	decoded: Union[
 				str,
+				bytes,
 				int,
-				List[Union[str, int, List, Dict]],
-				Dict[str, Union[str, int, List, Dict]]
+				List[supported_types],
+				Dict[str, supported_types],
 			]
 
 

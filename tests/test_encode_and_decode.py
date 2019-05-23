@@ -1,8 +1,8 @@
-from bencoding import encode, decode
 from examples import (
-	Example,
 	EXAMPLES,
 )
+
+from bencoding import encode, decode
 
 
 def test_encode():

@@ -10,7 +10,7 @@ def _decode_str(value: bytes, i: int) -> Tuple[Union[str, bytes], int]:
 	length = int(value[start:i])
 
 	i += 1
-	string = value[i:i+length]
+	string = value[i:i + length]
 	try:
 		string = string.decode()
 	except UnicodeDecodeError:
@@ -26,7 +26,7 @@ def _decode_int(value: bytes, i: int) -> Tuple[int, int]:
 	while value[i] != ord('e'):
 		i += 1
 
-	return int(value[start+1:i]), i+1
+	return int(value[start + 1:i]), i + 1
 
 
 def _decode_list(value: bytes, i: int) -> Tuple[List, int]:
@@ -38,7 +38,7 @@ def _decode_list(value: bytes, i: int) -> Tuple[List, int]:
 		item, i = _decode(value, i)
 		decoded.append(item)
 
-	return decoded, i+1
+	return decoded, i + 1
 
 
 def _decode_dict(value: bytes, i: int) -> Tuple[Dict, int]:
@@ -54,7 +54,8 @@ def _decode_dict(value: bytes, i: int) -> Tuple[Dict, int]:
 	return decoded, i + 1
 
 
-def _decode(value: bytes, i: int) -> Tuple[Union[bytes, str, int, List, Dict], int]:
+def _decode(value: bytes, i: int) -> Tuple[
+	Union[bytes, str, int, List, Dict], int]:
 	if value[i] == ord('d'):
 		return _decode_dict(value, i)
 	elif value[i] == ord('l'):

@@ -1,5 +1,5 @@
-from typing import NamedTuple, Union, List, Dict
 import pickle
+from typing import NamedTuple, Union, List, Dict
 
 supported_types = Union[str, bytes, int, List, Dict]
 
@@ -7,18 +7,18 @@ supported_types = Union[str, bytes, int, List, Dict]
 class Example(NamedTuple):
 	encoded: bytes
 	decoded: Union[
-				str,
-				bytes,
-				int,
-				List[supported_types],
-				Dict[str, supported_types],
-			]
+		str,
+		bytes,
+		int,
+		List[supported_types],
+		Dict[str, supported_types],
+	]
 
 
 STRING_EXAMPLES = [Example(decoded=d, encoded=e) for d, e in [
-		('', b'0:'),
-		('spam', b'4:spam'),
-		('parrot sketch', b'13:parrot sketch'),
+	('', b'0:'),
+	('spam', b'4:spam'),
+	('parrot sketch', b'13:parrot sketch'),
 ]]
 
 INTEGER_EXAMPLES = [Example(decoded=d, encoded=e) for d, e in [
@@ -45,34 +45,34 @@ DICT_EXAMPLES = [
 	Example(decoded=d, encoded=e) for d, e in [
 		({}, b'de'),
 		({
-			'publisher': 'bob',
-			'publisher-webpage': 'www.example.com',
-			'publisher.location': 'home',
-		},
-			b'd9:publisher3:bob17:publisher-webpage15:www.example.com'
-			b'18:publisher.location4:homee'),
+			 'publisher': 'bob',
+			 'publisher-webpage': 'www.example.com',
+			 'publisher.location': 'home',
+		 },
+		 b'd9:publisher3:bob17:publisher-webpage15:www.example.com'
+		 b'18:publisher.location4:homee'),
 		({
-			'spam': ['a', 'b'],
-		},
-			b'd4:spaml1:a1:bee'),
+			 'spam': ['a', 'b'],
+		 },
+		 b'd4:spaml1:a1:bee'),
 		({
-			'cow': 'moo',
-			'spam': 'eggs',
-		}, b'd3:cow3:moo4:spam4:eggse'),
+			 'cow': 'moo',
+			 'spam': 'eggs',
+		 }, b'd3:cow3:moo4:spam4:eggse'),
 		({
 			 'foo': 42,
 			 'bar': 'spam'
-		}, b'd3:bar4:spam3:fooi42ee'),
+		 }, b'd3:bar4:spam3:fooi42ee'),
 		({
-			'level1': {
-				'level2': 'banana',
-			}
-		}, b'd6:level1d6:level26:bananaee')
+			 'level1': {
+				 'level2': 'banana',
+			 }
+		 }, b'd6:level1d6:level26:bananaee')
 	]
 ]
 
-
-with open('tests/ubuntu-18.04.2-desktop-amd64.iso.torrent.pickle', 'rb') as file:
+with open('tests/ubuntu-18.04.2-desktop-amd64.iso.torrent.pickle',
+          'rb') as file:
 	decoded = pickle.load(file)
 with open('tests/ubuntu-18.04.2-desktop-amd64.iso.torrent', 'rb') as file:
 	encoded = file.read()

@@ -1,5 +1,5 @@
-from typing import Union, List, Dict, Deque
 from collections import deque, OrderedDict
+from typing import Union, List, Dict, Deque
 
 
 def _encode_bytes(encoding: Deque, value: bytes):
@@ -21,7 +21,8 @@ def _encode_list(encoding: Deque, value: List):
 	encoding.append(b'e')
 
 
-def _encode_dict(encoding: Deque, value: Dict[str, Union[str, int, bytes, List, Dict]]):
+def _encode_dict(encoding: Deque,
+                 value: Dict[str, Union[str, int, bytes, List, Dict]]):
 	encoding.append(b'd')
 	for k in sorted(value):
 		_encode_str(encoding, k)

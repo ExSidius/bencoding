@@ -1,6 +1,7 @@
 # bencoding - A One Stop Shop for All Your Bencoding Needs
 
 [![Build Status](https://travis-ci.com/ExSidius/bencoding.svg?branch=master)](https://travis-ci.com/ExSidius/bencoding)
+[![Coverage Status](https://coveralls.io/repos/github/ExSidius/bencoding/badge.svg)](https://coveralls.io/github/ExSidius/bencoding)
 
 ## What is Bencoding?
 

@@ -12,12 +12,10 @@ that makes doing that easy while affording you luxuries from Python3.7
 
 ## Installation
 
-The best way to install this package as of now is via GitHub.
+You can install this package using pip.
 
 ```bash
-git clone https://github.com/ExSidius/bencoding.git
-cd bencoding
-pip install -e .
+python -m pip install bencoding
 ```
 
 ## Tests

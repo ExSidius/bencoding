@@ -27,7 +27,7 @@ def test_encode_speed():
 	dev = stdev(times)
 
 	assert agg < 3.0e-05
-	assert dev < 6.0e-06
+	assert dev < 7.0e-06
 
 
 def test_decode():

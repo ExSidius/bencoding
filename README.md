@@ -15,7 +15,7 @@ that makes doing that easy while affording you luxuries from Python3.7
 You can install this package using pip.
 
 ```bash
-python -m pip install bencoding
+python -m pip install bencoding.py
 ```
 
 ## Tests
